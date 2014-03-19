@@ -4,6 +4,7 @@ import static junit.framework.Assert.assertEquals;
 
 import java.util.Map;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,6 +61,7 @@ public class FixturesForJTest {
 		fixturesForJ.withTestData("src/test/java/com/fixtures/test").init();
 		int count = jdbcTemplate.queryForInt("select count(name) from t_country");
 		assertEquals(0, count);
+		fixturesForJ.clean();
 	}
 	
 	@Test
@@ -91,6 +93,7 @@ public class FixturesForJTest {
 	}
 	
 	@Test
+	@Ignore
 	public void addProgrammaticallySomeRows(){
 		Map<String, Object> dataMap = Maps.newHashMap();
 		dataMap.put("id", new PrimaryKey(3L));

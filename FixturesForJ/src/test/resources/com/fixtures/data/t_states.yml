@@ -1,0 +1,20 @@
+KER:
+  state_id: !!com.fixtures.test.PrimaryKey 1
+  name: KERALA
+  code: KR
+  country_id: !!com.fixtures.test.NullableForeignKey IN
+  population: 1000
+  
+TAMILNADU:
+  state_id: !!com.fixtures.test.PrimaryKey 2
+  name: TAMILNADU
+  code: TN
+  country_id: !!com.fixtures.test.NullableForeignKey IN
+  population: 2000
+  
+KARNATAKA:
+  state_id: !!com.fixtures.test.PrimaryKey 3
+  name: KARNATAKA
+  code: KN
+  country_id: !!com.fixtures.test.NullableForeignKey IN
+  population: 2000

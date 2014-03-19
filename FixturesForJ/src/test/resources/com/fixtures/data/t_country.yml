@@ -1,0 +1,27 @@
+GB:
+  name: Great Britain
+  key: !!com.fixtures.test.PrimaryKey 1
+  code: GB
+  capital: London
+  continent_id: !!com.fixtures.test.NullableForeignKey EU
+  
+IN:
+  key: !!com.fixtures.test.PrimaryKey 2
+  name: India
+  code: IN
+  capital: New Delhi
+  continent_id: !!com.fixtures.test.NullableForeignKey ASIA
+  
+FR:
+  key: !!com.fixtures.test.PrimaryKey 3
+  name: France
+  code: FR
+  capital: Paris
+  continent_id: !!com.fixtures.test.NullableForeignKey EU
+  
+IT:
+  key: !!com.fixtures.test.PrimaryKey 4
+  name: Italy
+  code: IT
+  capital: Milan
+  continent_id: !!com.fixtures.test.NullableForeignKey EU

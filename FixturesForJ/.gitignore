@@ -1,0 +1,4 @@
+/target
+/hsqldb.properties
+/hsqldb.script
+/hsqldb.tmp

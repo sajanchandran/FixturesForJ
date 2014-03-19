@@ -1,0 +1,11 @@
+ASIA:
+  CONTINENT_ID: !!com.fixtures.test.PrimaryKey 1
+  NAME: ASIA
+  CODE: AS
+  SIZE: 2000
+  
+EU:
+  CONTINENT_ID: !!com.fixtures.test.PrimaryKey 2
+  NAME: EUROPE
+  CODE: EU
+  SIZE: 1000

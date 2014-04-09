@@ -53,13 +53,13 @@ public class DataCacheHelperTest {
 		dataMap.put("type", "Honda");
 		RowData rowData = new RowData(dataMap, "t_engine", "ENG_3");
 		cacheHelper.add(rowData);
-		dataMap = Maps.newHashMap();
 		dataMap.put("id", new PrimaryKey(4L));
-		dataMap.put("type", "Maruti");
-		rowData = new RowData(dataMap, "t_engine", "ENG_4");
+		dataMap.put("n", "India");
+		rowData = new RowData(dataMap, "t_country", "IN");
 		cacheHelper.add(rowData);
 		Map<String, TableData> mapOfTableNameVsData = cacheHelper.getMapOfTableNameVsData();
 		assertEquals(2, mapOfTableNameVsData.size());
 		assertTrue(mapOfTableNameVsData.containsKey("t_engine"));
+		assertTrue(mapOfTableNameVsData.containsKey("t_country"));
 	}
 }

@@ -48,7 +48,7 @@ public class ParseYamlTest {
 	public void readFromGBInput(){
 		ParseYaml parser = new ParseYaml("src/test/resources/com/fixtures/data/t_country.yml", null);
 		Map<String, Object> hashMap = parser.get("GB");
-		assertEquals(1, ((PrimaryKey)hashMap.get("key")).getKey().longValue());
+		assertEquals("1", ((PrimaryKey)hashMap.get("key")).getKey());
 		assertEquals("Great Britain", hashMap.get("name"));
 		assertEquals("GB", hashMap.get("code"));
 		assertEquals("London", hashMap.get("capital"));

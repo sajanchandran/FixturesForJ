@@ -1,5 +1,6 @@
 package com.fixtures.test;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,9 +32,15 @@ public class PersistData {
 
 	public void clean(RowData primaryKeyRowData) {
 		StringBuilder sql = new StringBuilder();
-		sql.append("delete from ").append(primaryKeyRowData.getTableName()).append(" where ").
-									append(primaryKeyRowData.getPrimaryKeyColumnName()).append(" in ( ").
-									append(primaryKeyRowData.getPrimaryKey()).append(" )");
+		if(org.apache.commons.lang3.StringUtils.isNumeric(primaryKeyRowData.getPrimaryKey().getKey())){
+			sql.append("delete from ").append(primaryKeyRowData.getTableName()).append(" where ").
+			append(primaryKeyRowData.getPrimaryKeyColumnName()).append(" in ( ").
+			append(primaryKeyRowData.getPrimaryKey()).append(" )");
+		}else{
+			sql.append("delete from ").append(primaryKeyRowData.getTableName()).append(" where ").
+			append(primaryKeyRowData.getPrimaryKeyColumnName()).append(" in ( ").
+			append("'"+primaryKeyRowData.getPrimaryKey()+"'").append(" )");
+		}
 		System.out.println(sql);
 		jdbcTemplate.update(sql.toString());
 	}

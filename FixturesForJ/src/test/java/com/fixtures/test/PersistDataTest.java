@@ -61,6 +61,16 @@ public class PersistDataTest {
 		jdbcTemplate.queryForObject("select name from t_continent where continent_id=1", String.class);
 	}
 	
+	@Test(expected=EmptyResultDataAccessException.class)
+	public void deleteRecordCorrectlyWhenPrimaryKeyIsAString(){
+		ParseYaml parser = new ParseYaml("src/test/resources/com/fixture/tableWithStringPrimaryKey/t_school.yml", null);
+		Map<String, Object> school1Data = parser.get("SCHOOL_1");
+		RowData rowData = new RowData(school1Data, "t_school", "SCHOOL_1");
+		persistData.persist(rowData);
+		persistData.clean(rowData);
+		jdbcTemplate.queryForObject("select country from t_school where name='ADM'", String.class);
+	}
+	
 	@Test
 	public void updateDataCorrectly(){
 		ParseYaml engineParser = new ParseYaml("src/test/resources/com/fixture/foreignKeysInterdependentOnEachOther/t_engine.yml", null);

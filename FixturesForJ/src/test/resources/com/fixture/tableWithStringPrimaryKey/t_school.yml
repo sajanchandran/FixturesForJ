@@ -1,0 +1,7 @@
+SCHOOL_1:
+  NAME: !!com.fixtures.test.PrimaryKey ADM 
+  COUNTRY: India
+  
+SCHOOL_2:
+  NAME: !!com.fixtures.test.PrimaryKey BCM
+  COUNTRY: Britain

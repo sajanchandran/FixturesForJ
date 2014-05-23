@@ -2,6 +2,8 @@ package com.fixtures.test;
 
 import static junit.framework.Assert.assertEquals;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Map;
 
 import org.junit.Ignore;
@@ -9,6 +11,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -96,12 +99,25 @@ public class FixturesForJTest {
 	@Ignore
 	public void addProgrammaticallySomeRows(){
 		Map<String, Object> dataMap = Maps.newHashMap();
-		dataMap.put("id", new PrimaryKey(3L));
+		dataMap.put("id", new PrimaryKey("3"));
 		dataMap.put("type", "Honda");
 		RowData rowData = new RowData(dataMap, "t_engine", "ENG_3");
 		fixturesForJ.withTestData("src/test/resources/com/fixture/foreignKeysInterdependentOnEachOther").addRowData(rowData).init();
 		Long engine_1 = jdbcTemplate.queryForLong("select engine_id from t_automobile where id=3");
 		assertEquals(3, engine_1.longValue());
+		fixturesForJ.clean();
+	}
+	
+	@Test
+	public void tableHasStringPrimaryKey(){
+		fixturesForJ.withTestData("src/test/resources/com/fixture/tableWithStringPrimaryKey").init();
+		String country = jdbcTemplate.queryForObject("select country from t_school where name='ADM'", new RowMapper<String>(){
+			@Override
+			public String mapRow(ResultSet rs, int rowNum) throws SQLException {
+				return rs.getString("country");
+			}
+		});
+		assertEquals("India", country);
 		fixturesForJ.clean();
 	}
 }

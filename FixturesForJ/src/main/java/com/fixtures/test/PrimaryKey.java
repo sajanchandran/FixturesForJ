@@ -2,13 +2,13 @@ package com.fixtures.test;
 
 public class PrimaryKey {
 
-	private Long key;
+	private String key;
 
-	public PrimaryKey(Long key) {
+	public PrimaryKey(String key) {
 		this.key = key;
 	}
 
-	public Long getKey() {
+	public String getKey() {
 		return key;
 	}
 

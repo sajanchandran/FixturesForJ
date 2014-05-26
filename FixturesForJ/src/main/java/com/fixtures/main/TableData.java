@@ -5,6 +5,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+/** This class represent a table entity, populated with RowData objects which represents each row of the table.
+ * 
+ * @author chandrans1
+ */
 public class TableData {
 
 	private Map<String, Map<String, Object>> data;
@@ -45,8 +49,8 @@ public class TableData {
 		return listOfRowDataWithNullableForeignKey;
 	}
 	
-	public void addRowData(Map<String, Object> rowData){
-		
+	public void addRowData(RowData rowData){
+		data.put(rowData.getSectionName(), rowData.getRawRowData());
 	}
 
 }

@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -96,14 +95,13 @@ public class FixturesForJTest {
 	}
 	
 	@Test
-	@Ignore
 	public void addProgrammaticallySomeRows(){
 		Map<String, Object> dataMap = Maps.newHashMap();
 		dataMap.put("id", new PrimaryKey("3"));
 		dataMap.put("type", "Honda");
 		RowData rowData = new RowData(dataMap, "t_engine", "ENG_3");
 		fixturesForJ.withTestData("src/test/resources/com/fixture/foreignKeysInterdependentOnEachOther").addRowData(rowData).init();
-		Long engine_1 = jdbcTemplate.queryForLong("select engine_id from t_automobile where id=3");
+		Long engine_1 = jdbcTemplate.queryForLong("select id from t_engine where id=3");
 		assertEquals(3, engine_1.longValue());
 		fixturesForJ.clean();
 	}

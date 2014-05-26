@@ -49,11 +49,17 @@ public class DataCacheHelperTest {
 	public void addRowDataToCache(){
 		DataCacheHelper cacheHelper = new DataCacheHelper();
 		Map<String, Object> dataMap = Maps.newHashMap();
-		dataMap.put("id", new PrimaryKey(3L));
+		dataMap.put("id", new PrimaryKey("3"));
 		dataMap.put("type", "Honda");
 		RowData rowData = new RowData(dataMap, "t_engine", "ENG_3");
 		cacheHelper.add(rowData);
-		dataMap.put("id", new PrimaryKey(4L));
+		dataMap = Maps.newHashMap();
+		dataMap.put("id", new PrimaryKey("4"));
+		dataMap.put("type", "BMW");
+		rowData = new RowData(dataMap, "t_engine", "ENG_4");
+		cacheHelper.add(rowData);
+		dataMap = Maps.newHashMap();
+		dataMap.put("id", new PrimaryKey("4"));
 		dataMap.put("n", "India");
 		rowData = new RowData(dataMap, "t_country", "IN");
 		cacheHelper.add(rowData);
@@ -61,5 +67,7 @@ public class DataCacheHelperTest {
 		assertEquals(2, mapOfTableNameVsData.size());
 		assertTrue(mapOfTableNameVsData.containsKey("t_engine"));
 		assertTrue(mapOfTableNameVsData.containsKey("t_country"));
+		assertEquals(1, mapOfTableNameVsData.get("t_country").getSections().size());
+		assertEquals(2, mapOfTableNameVsData.get("t_engine").getSections().size());
 	}
 }

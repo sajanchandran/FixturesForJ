@@ -26,7 +26,7 @@ public class RowDataTest {
 	@Before
 	public void onceBeforeEachTest(){
 		Map<String, Object> rowDatas = new HashMap<String, Object>();
-		rowDatas.put("id", new PrimaryKey(1L));
+		rowDatas.put("id", new PrimaryKey("1"));
 		rowDatas.put("name", "Sajan");
 		rowDatas.put("foreign_id_in", new NullableForeignKey("IN"));
 		rowDatas.put("foreign_id_in1", new NullableForeignKey("IN"));
@@ -52,7 +52,7 @@ public class RowDataTest {
 	
 	@Test
 	public void getPrimaryKey(){
-		assertEquals(new PrimaryKey(1L), rowData.getPrimaryKey());
+		assertEquals(new PrimaryKey("1"), rowData.getPrimaryKey());
 	}
 	
 	@Test
@@ -73,7 +73,7 @@ public class RowDataTest {
 	@Test
 	public void changeForeignKeyValue(){
 		int foreignKeyReplacedCount = 0;
-		rowData.changeNullableForeignKey(new PrimaryKey(2L), new NullableForeignKey("IN"));
+		rowData.changeNullableForeignKey(new PrimaryKey("2"), new NullableForeignKey("IN"));
 		for (ForeignKey foreignKey : rowData.getNullableForeignKeys()) {
 			if(foreignKey.toString().equals("2")){
 				foreignKeyReplacedCount+=1;
@@ -91,7 +91,7 @@ public class RowDataTest {
 	
 	@Test
 	public void changeNonNullableForeignKeyValue(){
-		rowData.changeNonNullableForeignKey(new PrimaryKey(2L));
+		rowData.changeNonNullableForeignKey(new PrimaryKey("2"));
 		assertEquals(new NonNullableForeignKey("2"), rowData.getNonNullableForeignKey());
 	}
 	
@@ -108,19 +108,19 @@ public class RowDataTest {
 	
 	@Test
 	public void getColumnValues(){
-		assertEquals(new PrimaryKey(1L), rowData.getColumnValue("id"));
+		assertEquals(new PrimaryKey("1"), rowData.getColumnValue("id"));
 	}
 	
 	@Test
 	public void equalsMethodCorrectlyChecksPrimaryKey(){
 		Map<String, Object> rowDatas = new HashMap<String, Object>();
-		rowDatas.put("id", new PrimaryKey(1L));
+		rowDatas.put("id", new PrimaryKey("1"));
 		rowDatas.put("name", "Sajan");
 		rowDatas.put("foreign_id", new NullableForeignKey("IN"));
 		rowData = new RowData(rowDatas, "t_country", null);
 		
 		Map<String, Object> rowDatas1 = new HashMap<String, Object>();
-		rowDatas1.put("id", new PrimaryKey(1L));
+		rowDatas1.put("id", new PrimaryKey("1"));
 		rowDatas1.put("name", "Sajan");
 		rowDatas1.put("foreign_id", new NullableForeignKey("IN"));
 		RowData rowData1 = new RowData(rowDatas1, "t_country", null);

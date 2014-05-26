@@ -3,7 +3,7 @@ FixturesForJ
 
 The aim of the project is to simplify data creation for automated testing.
 
-Usage:
+##Usage:
 
 1. Create a yaml file with the file name as the name of the table.
 2. Create records in yaml file, give a heading for the row and the fields represent column name.
@@ -30,5 +30,5 @@ Usage:
      TYPE: V
    ````  
    
-Development:
+##Development:
    The project is still in development phase, currently it doesnt support insertion of ```date```

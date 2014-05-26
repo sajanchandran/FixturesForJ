@@ -29,3 +29,6 @@ Usage:
      ID: !!com.fixtures.test.PrimaryKey 1
      TYPE: V
    ````  
+   
+Development:
+   The project is still in development phase, currently it doesnt support insertion of ```date```

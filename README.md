@@ -32,4 +32,4 @@ The aim of the project is to simplify data creation for automated testing.
    
 ####Development:
    The project is still in development phase, currently it doesnt support insertion of ```date```.
-   To run the ```test```, download ```hsqldb``` and start the database.
+   Before running the ```test```, download ```hsqldb``` and start the database.

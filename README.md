@@ -3,6 +3,10 @@ FixturesForJ
 
 The aim of the project is to simplify data creation for automated testing.
 
+####Dependency:
+
+`Spring-jdbc` module.
+
 ####Usage:
 
 1. Create a yaml file with the file name as the name of the table.
@@ -29,6 +33,8 @@ The aim of the project is to simplify data creation for automated testing.
      ID: !!com.fixtures.test.PrimaryKey 1
      TYPE: V
    ````  
+4. Wire `FixturesForJ` in your `test`, all it needs is instance of `jdbcTemplate`.
+
    
 ####Development:
    The project is still in development phase, currently it doesnt support insertion of ```date```.

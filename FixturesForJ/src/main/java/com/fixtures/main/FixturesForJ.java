@@ -11,8 +11,12 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import com.fixtures.test.ForeignKey;
-import com.fixtures.test.PersistData;
+import com.fixtures.data.structure.ForeignKey;
+import com.fixtures.data.structure.RowData;
+import com.fixtures.data.structure.TableData;
+import com.fixtures.helpers.DataCache;
+import com.fixtures.helpers.ParseYaml;
+import com.fixtures.helpers.PersistRecord;
 
 /** This does both the insert and delete of the records by reading the yaml files provided, use init and clean methods
  * during setUp and tearDown respectively.
@@ -23,9 +27,9 @@ public class FixturesForJ {
 	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-	private PersistData persistData;
+	private PersistRecord persistData;
 	private Deque<RowData> toCleanUp;
-	private DataCacheHelper cachedData;
+	private DataCache cachedData;
 	private String testDataLocation = "src/test/resources/com/fixtures/data";
 	private RowData rowData;
 	
@@ -35,8 +39,8 @@ public class FixturesForJ {
 	 * To be invoked during the @before or setUp methods.
 	 */
 	public void init() {
-		persistData = new PersistData(jdbcTemplate);
-		cachedData = new DataCacheHelper();
+		persistData = new PersistRecord(jdbcTemplate);
+		cachedData = new DataCache();
 		toCleanUp = new ArrayDeque<RowData>();
 		File file = new File(testDataLocation);
 		File[] fileList = scanFolderForYmlDataFiles(file);

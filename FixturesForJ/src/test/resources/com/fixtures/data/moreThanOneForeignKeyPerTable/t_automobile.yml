@@ -1,0 +1,11 @@
+JEEP:
+  ID: !!com.fixtures.data.structure.PrimaryKey 1
+  NAME: JEEP CASTRO
+  TYPE: !!com.fixtures.data.structure.NullableForeignKey ENG_1
+  ENGINE_ID: !!com.fixtures.data.structure.NullableForeignKey ENG_2
+  
+JEEP_1:
+  ID: !!com.fixtures.data.structure.PrimaryKey 2
+  NAME: JEEP MAHINDRA
+  TYPE: !!com.fixtures.data.structure.NullableForeignKey ENG_2
+  ENGINE_ID: !!com.fixtures.data.structure.NullableForeignKey ENG_1

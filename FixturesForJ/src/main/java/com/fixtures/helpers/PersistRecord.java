@@ -1,4 +1,4 @@
-package com.fixtures.test;
+package com.fixtures.helpers;
 
 
 import java.util.ArrayList;
@@ -7,13 +7,14 @@ import java.util.List;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.util.StringUtils;
 
-import com.fixtures.main.RowData;
+import com.fixtures.data.structure.RowData;
 
-public class PersistData {
+
+public class PersistRecord {
 
 	private JdbcTemplate jdbcTemplate;
 
-	public PersistData(JdbcTemplate jdbcTemplate) {
+	public PersistRecord(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 

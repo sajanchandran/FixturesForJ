@@ -1,4 +1,4 @@
-package com.fixtures.main;
+package com.fixtures.helpers;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertTrue;
@@ -12,14 +12,18 @@ import org.junit.Before;
 import org.junit.Test;
 import org.yaml.snakeyaml.Yaml;
 
-import com.fixtures.test.NullableForeignKey;
-import com.fixtures.test.PrimaryKey;
+import com.fixtures.data.structure.NullableForeignKey;
+import com.fixtures.data.structure.PrimaryKey;
+import com.fixtures.data.structure.RowData;
+import com.fixtures.data.structure.TableData;
+import com.fixtures.helpers.DataCache;
 import com.google.common.collect.Maps;
 
-public class DataCacheHelperTest {
+public class DataCacheTest {
 	
 	private Map<String, Map<String, Object>> statesData;
 	private Map<String, Map<String, Object>> countryData;
+	private DataCache cacheHelper;
 
 
 	@SuppressWarnings("unchecked")
@@ -30,15 +34,14 @@ public class DataCacheHelperTest {
 		Yaml yaml = new Yaml();
 		statesData = (Map<String, Map<String, Object>>) yaml.load(new FileInputStream(new File(statesDataFilePath)));
 		countryData = (Map<String, Map<String, Object>>) yaml.load(new FileInputStream(new File(countryDataFilePath)));
+		cacheHelper = new DataCache();
 	}
 	
 
 	@Test
 	public void getRowDataForParticularDataSection(){
-		DataCacheHelper cacheHelper = new DataCacheHelper();
-		cacheHelper.add(countryData, "t_country");
-		cacheHelper.add(statesData, "t_states");
-		RowData rowData = cacheHelper.getRowDataForSection(new NullableForeignKey("KER"));
+		givenCacheHelperHasStatesAndCountryData();
+		RowData rowData = whenGetRowDataForSectionIsInvoked();
 		assertEquals("KERALA", rowData.getColumnValue("name"));
 		assertEquals("KR", rowData.getColumnValue("code"));
 		assertEquals(1000, rowData.getColumnValue("population"));
@@ -47,7 +50,6 @@ public class DataCacheHelperTest {
 	
 	@Test
 	public void addRowDataToCache(){
-		DataCacheHelper cacheHelper = new DataCacheHelper();
 		Map<String, Object> dataMap = Maps.newHashMap();
 		dataMap.put("id", new PrimaryKey("3"));
 		dataMap.put("type", "Honda");
@@ -70,4 +72,14 @@ public class DataCacheHelperTest {
 		assertEquals(1, mapOfTableNameVsData.get("t_country").getSections().size());
 		assertEquals(2, mapOfTableNameVsData.get("t_engine").getSections().size());
 	}
+
+	private RowData whenGetRowDataForSectionIsInvoked() {
+		RowData rowData = cacheHelper.getRowDataForSection(new NullableForeignKey("KER"));
+		return rowData;
+	}
+
+	private void givenCacheHelperHasStatesAndCountryData() {
+		cacheHelper.add(countryData, "t_country");
+		cacheHelper.add(statesData, "t_states");
+	}	
 }

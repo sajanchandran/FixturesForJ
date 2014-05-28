@@ -1,4 +1,4 @@
-package com.fixtures.main;
+package com.fixtures.helpers;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -8,12 +8,14 @@ import java.util.Map;
 import org.springframework.util.StringUtils;
 import org.yaml.snakeyaml.Yaml;
 
+import com.fixtures.exception.FixtureDataNotFoundException;
+
 public class ParseYaml {
 
 	private String path;
-	private DataCacheHelper cachedData;
+	private DataCache cachedData;
 
-	public ParseYaml(String path, DataCacheHelper cachedData) {
+	public ParseYaml(String path, DataCache cachedData) {
 		this.path = path;
 		this.cachedData = cachedData;
 	}

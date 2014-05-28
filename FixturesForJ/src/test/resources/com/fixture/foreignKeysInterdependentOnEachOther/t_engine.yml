@@ -1,7 +1,0 @@
-ENG_1:
-  ID: !!com.fixtures.test.PrimaryKey 1
-  TYPE: V
-  
-ENG_2:
-  ID: !!com.fixtures.test.PrimaryKey 2
-  TYPE: V

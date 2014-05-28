@@ -1,4 +1,4 @@
-package com.fixtures.test;
+package com.fixtures.helpers;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
@@ -17,17 +17,18 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.mockito.Mock;
 
-import com.fixtures.main.DataCacheHelper;
-import com.fixtures.main.FixtureDataNotFoundException;
+import com.fixtures.data.structure.PrimaryKey;
+import com.fixtures.exception.FixtureDataNotFoundException;
+import com.fixtures.helpers.DataCache;
+import com.fixtures.helpers.ParseYaml;
 import com.fixtures.main.FixturesForJ;
-import com.fixtures.main.ParseYaml;
 
 public class ParseYamlTest {
 	
 	@Mock
 	private FixturesForJ mockFixturesForJ;
 	@Mock
-	private DataCacheHelper mockCachedData;
+	private DataCache mockCachedData;
 	
 	@Rule
 	public ExpectedException expectedException = ExpectedException.none();

@@ -1,0 +1,9 @@
+SCHOOL_1:
+  NAME: !!com.fixtures.data.structure.PrimaryKey ADM 
+  COUNTRY: India
+  CREATED_DATE: '2012-01-01'
+    
+SCHOOL_2:
+  NAME: !!com.fixtures.data.structure.PrimaryKey BCM
+  COUNTRY: Britain
+  CREATED_DATE: '2013-09-10'

@@ -1,4 +1,4 @@
-package com.fixtures.test;
+package com.fixtures.data.structure;
 
 public abstract class ForeignKey {
 

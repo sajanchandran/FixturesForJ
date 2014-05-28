@@ -1,4 +1,4 @@
-package com.fixtures.main;
+package com.fixtures.exception;
 
 public class FixtureDataNotFoundException extends RuntimeException {
 

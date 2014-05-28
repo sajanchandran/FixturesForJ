@@ -1,4 +1,4 @@
-package com.fixtures.main;
+package com.fixtures.data.structure;
 
 import java.util.Iterator;
 import java.util.List;
@@ -6,18 +6,25 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import com.fixtures.test.ForeignKey;
-import com.fixtures.test.NonNullableForeignKey;
-import com.fixtures.test.NullableForeignKey;
-import com.fixtures.test.PrimaryKey;
 import com.google.common.collect.Lists;
 
+/**This class represent a row in a TableData object, construct this object to add rows programatically 
+ * on top of yaml files.
+ * 
+ * @author chandrans1
+ *
+ */
 public class RowData {
 
 	private Map<String, Object> rowData;
 	private String tableName;
 	private String sectionName;
 
+	/** Constructor for creating RowData for TableData.
+	 * @param rowData, map of column name and column value
+	 * @param tableName
+	 * @param sectionName, name of the section from the yaml file
+	 */
 	public RowData(Map<String, Object> rowData, String tableName, String sectionName) {
 		this.rowData = rowData;
 		this.tableName = tableName;

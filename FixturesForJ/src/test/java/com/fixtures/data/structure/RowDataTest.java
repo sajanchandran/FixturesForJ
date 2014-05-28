@@ -1,4 +1,4 @@
-package com.fixtures.main;
+package com.fixtures.data.structure;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
@@ -12,10 +12,11 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.fixtures.test.ForeignKey;
-import com.fixtures.test.NullableForeignKey;
-import com.fixtures.test.NonNullableForeignKey;
-import com.fixtures.test.PrimaryKey;
+import com.fixtures.data.structure.ForeignKey;
+import com.fixtures.data.structure.NonNullableForeignKey;
+import com.fixtures.data.structure.NullableForeignKey;
+import com.fixtures.data.structure.PrimaryKey;
+import com.fixtures.data.structure.RowData;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 

@@ -1,17 +1,27 @@
-package com.fixtures.main;
+package com.fixtures.helpers;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
-import com.fixtures.test.ForeignKey;
+import com.fixtures.data.structure.ForeignKey;
+import com.fixtures.data.structure.RowData;
+import com.fixtures.data.structure.TableData;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
-public class DataCacheHelper {
+public class DataCache {
 
 	private Map<String, TableData> mapOfNameVsData = new HashMap<String, TableData>();
 	
-	public void add(Map<String, Map<String, Object>> rowData, String tableName) {
-		TableData tableData = new TableData(rowData, tableName);
+	public void add(Map<String, Map<String, Object>> data, String tableName) {
+		List<RowData> rows = Lists.newArrayList();
+		for(Entry<String, Map<String, Object>> entry : data.entrySet()){
+			RowData rowData = new RowData(entry.getValue(), tableName, entry.getKey());
+			rows.add(rowData);
+		}
+		TableData tableData = new TableData(rows);
 		mapOfNameVsData.put(tableName, tableData);
 	}
 

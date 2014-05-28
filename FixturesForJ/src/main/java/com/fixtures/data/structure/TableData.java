@@ -1,9 +1,12 @@
-package com.fixtures.main;
+package com.fixtures.data.structure;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
+
+import javax.annotation.Nullable;
+
+import com.google.common.base.Function;
+import com.google.common.collect.Lists;
 
 /** This class represent a table entity, populated with RowData objects which represents each row of the table.
  * 
@@ -11,26 +14,34 @@ import java.util.Set;
  */
 public class TableData {
 
-	private Map<String, Map<String, Object>> data;
-	private String tableName;
+	private List<RowData> rows;
 
-	public TableData(Map<String, Map<String, Object>> data, String tableName) {
-		this.data = data;
-		this.tableName = tableName;
+	public TableData(List<RowData> rows) {
+		this.rows = rows;
 	}
 
-	public Set<String> getSections() {
-		return data.keySet();
+	public List<String> getSections() {
+		return Lists.transform(rows, new Function<RowData, String>() {
+			@Override
+			@Nullable
+			public String apply(@Nullable RowData input) {
+				return input.getSectionName();
+			}
+		});
 	}
 
 	public RowData getRowData(String section) {
-		return new RowData(data.get(section), tableName, section);
+		for(RowData rowData : rows){
+			if(section.equals(rowData.getSectionName())){
+				return rowData;
+			}
+		}
+		return null;
 	}
 
 	public List<RowData> getListOfRowDataWithNoForeignKey() {
 		List<RowData> listOfRowDataWhichHasNoForeignKey = new ArrayList<RowData>();
-		for (String	rowDataName : data.keySet()) {
-			RowData rowData = getRowData(rowDataName);
+		for (RowData rowData : rows) {
 			if(!rowData.hasNullableForeignKey() && !rowData.hasNonNullableForeignKey()){
 				listOfRowDataWhichHasNoForeignKey.add(rowData);
 			}
@@ -40,8 +51,7 @@ public class TableData {
 
 	public List<RowData> getListOfRowDataWithNullableForeignKey() {
 		List<RowData> listOfRowDataWithNullableForeignKey = new ArrayList<RowData>();
-		for (String	rowDataName : data.keySet()) {
-			RowData rowData = getRowData(rowDataName);
+		for (RowData rowData : rows) {
 			if(rowData.hasNullableForeignKey()){
 				listOfRowDataWithNullableForeignKey.add(rowData);
 			}
@@ -50,7 +60,7 @@ public class TableData {
 	}
 	
 	public void addRowData(RowData rowData){
-		data.put(rowData.getSectionName(), rowData.getRawRowData());
+		rows.add(rowData);
 	}
 
 }

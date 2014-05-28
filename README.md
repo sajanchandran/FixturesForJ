@@ -16,10 +16,10 @@ The aim of the project is to simplify data creation for automated testing.
    ````
    t_automobile.yml
    JEEP:
-        ID: !!com.fixtures.test.PrimaryKey 1
+        ID: !!com.fixtures.data.structure.PrimaryKey 1
         NAME: JEEP CASTRO
-        TYPE: !!com.fixtures.test.NullableForeignKey ENG_1
-        ENGINE_ID: !!com.fixtures.test.NullableForeignKey ENG_2
+        TYPE: !!com.fixtures.data.structure.NullableForeignKey ENG_1
+        ENGINE_ID: !!com.fixtures.data.structure.NullableForeignKey ENG_2
    ````     
 3. Just represent foreign keys with the section name and api automatically detects its corresponding table (yaml files) and the section.
 
@@ -30,14 +30,14 @@ The aim of the project is to simplify data creation for automated testing.
    ````
    t_engine.yml
    ENG_1:
-     ID: !!com.fixtures.test.PrimaryKey 1
+     ID: !!com.fixtures.data.structure.PrimaryKey 1
      TYPE: V
    ````  
 4. Wire `FixturesForJ` in your `test`, all it needs is instance of `jdbcTemplate`.
 
    
 ####Development:
-   The project is still in development phase, currently it doesnt support insertion of ```date```.
+   The project is still in development phase.
    
 ####Test:
    

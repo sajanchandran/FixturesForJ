@@ -33,7 +33,7 @@ The aim of the project is to simplify data creation for automated testing.
 ####Development:
    The project is still in development phase, currently it doesnt support insertion of ```date```.
    
-   #####Test:
+####Test:
    
    1. Before running the ```test```, download ```hsqldb```, ```apache maven``` and start the database.
    2. run ```mvn test -Pdb-refresh```
